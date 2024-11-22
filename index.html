@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moto Adventure - Catálogo</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Estilos generales */
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+        }
+
+        .navbar-toggler {
+            border-color: #fff;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding-top: 2rem;
+        }
+
+        h1, h2 {
+            font-family: 'Helvetica', sans-serif;
+            color: #333;
+        }
+
+        h2 {
+            color: #666;
+            font-size: 1.5rem;
+        }
+
+        .product-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-text {
+            color: #777;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .btn-buy, .btn-customize {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn-buy:hover, .btn-customize:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-outline-success {
+            border-color: #28a745;
+            color: #28a745;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        /* Estilo del modal */
+        .modal-header {
+            background-color: #3498db;
+            color: white;
+        }
+        .modal-body {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Moto Adventure</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="productos-link">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="contacto-link">Contacto</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search" onsubmit="event.preventDefault(); buscarProductos();">
+                <input class="form-control me-2" type="search" placeholder="Buscar productos" id="buscador" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenedor de Productos -->
+<div class="container">
+    <h1 class="text-center my-4"><span style="color: white;">Nuestras motos</span></h1>
+    <h2 class="text-center mb-5"><span style="color: white;">Los mejores productos para los amantes de las motos</span></h2>
+
+    <div id="productos" class="row justify-content-center">
+        <!-- Las tarjetas de productos se cargarán dinámicamente aquí -->
+    </div>
+</div>
+
+<!-- Modal de compra y personalización -->
+<div class="modal fade" id="personalizarModal" tabindex="-1" aria-labelledby="personalizarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="personalizarModalLabel">Personaliza tu Moto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formPersonalizacion">
+                    <div class="mb-3">
+                        <label for="color" class="form-label"><span style="color: black;">color</span></label>
+                        <select class="form-control" id="color" onchange="actualizarPrecio()" required>
+                            <option value="rojo">Rojo</option>
+                            <option value="azul">Azul</option>S
+                            <option value="negro">Negro</option>
+                            <option value="verde">Verde</option>
+                            <option value="amarillo">Amarillo</option>
+                            <option value="blanco">Blanco</option>
+                            <option value="naranja">Naranja</option>
+                            <option value="morado">Morado</option>
+                            <option value="plateado">Plateado</option>
+                            <option value="cafe">Café</option>
+                            <option value="gris">Gris</option>
+                            <option value="rosa">Rosa</option>
+                            <option value="turquesa">Turquesa</option>
+                            <option value="fucsia">Fucsia</option>
+                            <option value="beige">Beige</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="motor" class="form-label"> <span style="color: black;">Motor</span></label>
+                        <select class="form-control" id="motor" onchange="actualizarPrecio()" required>
+                            <option value="250">Motor 250cc</option>
+                <option value="500">Motor 500cc</option>
+                <option value="750">Motor 750cc</option>
+                <option value="1000">Motor 1000cc</option>
+                <option value="1200">Motor 1200cc</option>
+                <option value="1500">Motor 1500cc</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="llantas" class="form-label"> <span style="color: black;">Tipo de Llantas</span></label>
+                        <select class="form-control" id="llantas" onchange="actualizarPrecio()" required>
+                            <option value="estandar">Llantas estándar</option>
+                            <option value="deportivas">Llantas deportivas</option>
+                            <option value="todo-terreno">Llantas todo-terreno</option>
+                            <option value="mudas">Llantas mudas</option>
+                            <option value="off-road">Llantas off-road</option>                           
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="extras" class="form-label"> <span style="color: black;">Extras</span></label>
+                        <div>
+                            <input type="checkbox" id="proteccion" value="proteccion" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Protección adicional (+$100)</span><br>
+                            <input type="checkbox" id="accesorios" value="accesorios" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Accesorios extra (+$150)</span><br>
+                            <input type="checkbox" id="asegurado" value="asegurado" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Seguro adicional (+$120)</span><br>
+                            <input type="checkbox" id="gps" value="gps" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Sistema GPS (+$80)</span><br>
+                            <input type="checkbox" id="suspension" value="suspension" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Suspensión de alta gama (+$200)</span><br>
+                            <input type="checkbox" id="sonido" value="sonido" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Sistema de sonido (+$180)</span><br>
+                            <input type="checkbox" id="iluminacion" value="iluminacion" onchange="actualizarPrecio()"> 
+                            <span style="color: black;">Iluminación LED (+$120)</span><br>
+                        </div>
+                    </div>
+                    
+                                             
+
+                    <button type="submit" class="btn btn-primary w-100" onclick="confirmarPersonalizacion(event)">Confirmar Personalización</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de compra -->
+<div class="modal fade" id="comprarModal" tabindex="-1" aria-labelledby="comprarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="comprarModalLabel"> <span style="color: black;">Formulario de Compra</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formCompra">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label"><span style="color: black;">Nombre</span></label>
+                        <input type="text" class="form-control" id="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><span style="color: black;">Correo Electrónico</span></label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label"><span style="color: black;">Teléfono</span></label>
+                        <input type="tel" class="form-control" id="telefono" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label"><span style="color: black;">Dirección</span></label>
+                        <input type="text" class="form-control" id="direccion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalCompra" class="form-label"><span style="color: black;">Precio Final</span></label>
+                        <input type="text" class="form-control" id="totalCompra" value="$0.00" readonly>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Confirmar Compra</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cargar Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Cargar el script para mostrar los productos dinámicamente -->
+<script>
+    let precioBase = 2000;
+
+    // Función para cargar productos desde el archivo JSON
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => cargarProductos(data))
+        .catch(error => console.error('Error al cargar los datos:', error));
+
+    function cargarProductos(motos) {
+        const productosDiv = document.getElementById("productos");
+        productosDiv.innerHTML = ''; // Limpiar el contenedor antes de cargar las motos
+        motos.forEach(moto => {
+            const cardHTML = `
+                <div class="col-md-4 col-sm-6">
+                    <div class="card product-card">
+                        <img src="${moto.image}" class="card-img-top" alt="${moto.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${moto.title}</h5>
+                            <p class="card-text">${moto.description}</p>
+                            <p class="price">$${moto.cost.toFixed(2)}</p>
+                            <button class="btn btn-buy" onclick="abrirModal('${moto.title}', ${moto.cost})">Comprar Ahora</button>
+                            <button class="btn btn-customize" onclick="abrirModalPersonalizacion()">Personalizar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productosDiv.innerHTML += cardHTML;
+        });
+    }
+
+
+    // Función para abrir el modal de compra
+    function abrirModal(titulo, precio) {
+        // Mostrar el modal de compra
+        const modal = new bootstrap.Modal(document.getElementById('comprarModal'));
+        modal.show();
+        document.getElementById('comprarModalLabel').textContent = `Formulario de Compra: ${titulo}`;
+        document.getElementById('nombre').focus();
+        document.getElementById('totalCompra').value = `$${precio}`;
+    }
+
+    // Función para abrir el modal de personalización
+    function abrirModalPersonalizacion() {
+        // Mostrar el modal de personalización
+        const modal = new bootstrap.Modal(document.getElementById('personalizarModal'));
+        modal.show();
+    }
+
+    function actualizarPrecio() {
+        let color = document.getElementById("color").value;
+        let motor = parseInt(document.getElementById("motor").value);
+        let llantas = document.getElementById("llantas").value;
+        let extras = document.getElementById("extras").value;
+
+        let precioColor = 0;
+        let precioMotor = 0;
+        let precioLlantas = 0;
+        let precioExtras = 0;
+
+        // Asignar precios según las opciones seleccionadas
+        if (color === "rojo") precioColor = 50;
+        if (motor === 500) precioMotor = 200;
+        if (motor === 750) precioMotor = 300;
+        if (motor === 1000) precioMotor = 400;
+        if (llantas === "deportivas") precioLlantas = 150;
+        if (llantas === "todo-terreno") precioLlantas = 200;
+        if (extras === "proteccion") precioExtras = 100;
+        if (extras === "accesorios") precioExtras = 150;
+        if (extras === "asegurado") precioExtras = 120;
+
+        let precioTotal = precioBase + precioColor + precioMotor + precioLlantas + precioExtras;
+
+        document.getElementById("total").value = `$${precioTotal.toFixed(2)}`;
+    }
+
+    function confirmarPersonalizacion(event) {
+        event.preventDefault();
+        const totalPrecio = document.getElementById("total").value;
+        document.getElementById("totalCompra").value = totalPrecio;
+        alert("¡Tu personalización ha sido confirmada! Procede a llenar tus datos para finalizar la compra.");
+    }
+</script>
+</body>
+</html>

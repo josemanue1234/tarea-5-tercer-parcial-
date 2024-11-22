@@ -1,0 +1,105 @@
+[
+    {
+      "title": "Yamaha YZF-R1",
+      "description": "Deportiva de alto rendimiento con motor de 998 cc, ideal para los amantes de la velocidad y el diseño aerodinámico.",
+      "image": "https://bit.ly/414vtHJ",
+      "cost": 17399.99
+    },
+    {
+      "title": "Harley-Davidson Sportster S",
+      "description": "Cruiser moderna con motor V-Twin Revolution Max de 1250cc, perfecta para quienes buscan potencia y estilo clásico.",
+      "image": "https://bit.ly/4fmH1dq",
+      "cost": 14999.99
+    },
+    {
+      "title": "Kawasaki Ninja ZX-10R",
+      "description": "Deportiva de 998cc con tecnología avanzada y un rendimiento excepcional en circuito y carretera. Ideal para los fanáticos de la velocidad.",
+      "image": "https://bit.ly/3YUGGIa",
+      "cost": 14999.99
+    },
+    {
+      "title": "Honda CBR1000RR",
+      "description": "Moto deportiva con motor de 1000cc, diseñada para ofrecer un rendimiento superior y estabilidad en altas velocidades.",
+      "image": "https://bit.ly/3Z5lFvu",
+      "cost": 15500.00
+    },
+    {
+      "title": "BMW R 1250 GS",
+      "description": "Moto Adventure Touring con motor de 1250cc, ideal para viajes largos y terrenos difíciles. Un equilibrio perfecto entre confort y rendimiento.",
+      "image": "https://bit.ly/4erotHH",
+      "cost": 22000.00
+    },
+    {
+      "title": "Suzuki V-Strom 650",
+      "description": "Moto touring con motor de 645cc, diseñada para explorar rutas de carretera y caminos de tierra con gran comodidad y fiabilidad.",
+      "image": "https://bit.ly/4eCb144",
+      "cost": 9000.00
+    },
+    {
+      "title": "Ducati Panigale V4",
+      "description": "Moto deportiva de 1103cc, diseñada para los fanáticos de las altas revoluciones, el diseño italiano y la tecnología avanzada.",
+      "image": "https://bit.ly/3UORKFg",
+      "cost": 24999.99
+    },
+    {
+      "title": "Triumph Tiger 900",
+      "description": "Moto Adventure de 900cc, con un equilibrio perfecto entre turismo y off-road, ideal para quienes buscan versatilidad y confort.",
+      "image": "https://bit.ly/48MygXy",
+      "cost": 13999.99
+    },      
+    {
+      "title": "Royal Enfield Interceptor 650",
+      "description": "Moto retro de 650cc, que combina lo mejor de la estética clásica con la tecnología moderna, ideal para paseos relajados y urbanos.",
+      "image": "https://acortar.link/ii2oTy",
+      "cost": 6500.00
+    },
+    {
+      "title": "KTM 390 Duke",
+      "description": "Moto naked de 373cc, ligera y ágil, perfecta para principiantes y motociclistas urbanos que buscan un rendimiento deportivo en la ciudad.",
+      "image": "https://acortar.link/O0FN4T",
+      "cost": 5000.00
+    },
+    {
+      "title": "Harley-Davidson Road Glide",
+      "description": "Moto cruiser de gran cilindrada, con motor Milwaukee-Eight 114, ideal para viajes largos y disfrutar del confort en carretera.",
+      "image": "https://acortar.link/BJKSIr",
+      "cost": 21999.99
+    },
+    {
+      "title": "Honda Africa Twin",
+      "description": "Moto Adventure con motor de 1084cc, diseñada para afrontar caminos difíciles sin perder comodidad ni rendimiento.",
+      "image": "https://acortar.link/Oi6Sh6",
+      "cost": 14500.00
+    },
+    {
+      "title": "Yamaha MT-09",
+      "description": "Naked bike de 847cc, con un motor que ofrece gran potencia y una dinámica de conducción ágil, ideal para la ciudad y carretera.",
+      "image": "https://acortar.link/AGvYaU",
+      "cost": 9500.00
+    },
+    {
+      "title": "BMW S 1000 RR",
+      "description": "Moto deportiva de 999cc con tecnología avanzada, ideal para circuitos y conducción de alto rendimiento.",
+      "image": "https://bit.ly/3UPBvI0",
+      "cost": 21500.00
+    },
+    {
+      "title": "Kawasaki Z900",
+      "description": "Moto naked de 948cc, una opción potente y versátil para aquellos que buscan un desempeño destacado en carretera.",
+      "image": "https://bit.ly/3O9zTFe",
+      "cost": 8500.00
+    },
+    {
+      "title": "Ducati Monster 1200",
+      "description": "Moto naked de 1198cc, famosa por su estilo agresivo y motor potente, ideal para pilotos experimentados.",
+      "image": "https://acortar.link/fLR5NZ",
+      "cost": 14000.00
+    },
+    {
+      "title": "Suzuki GSX-R1000",
+      "description": "Moto deportiva de 999cc, con un motor diseñado para brindar una aceleración impresionante y un rendimiento excepcional en pista.",
+      "image": "https://acortar.link/CA7s9b",
+      "cost": 17999.99
+    }   
+  ]
+  
